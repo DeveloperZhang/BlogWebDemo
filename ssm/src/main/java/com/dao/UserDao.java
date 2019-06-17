@@ -4,4 +4,5 @@ import com.pojo.User;
 
 public interface UserDao {
     User queryByUserName(User user);
+    User queryByUserId(int uid);
 }

@@ -41,9 +41,9 @@
   </filter-mapping>
 
   <!--welcome pages-->
-  <welcome-file-list>
-    <welcome-file>index1.html</welcome-file>
-  </welcome-file-list>
+  <!--<welcome-file-list>-->
+    <!--<welcome-file>index.html</welcome-file>-->
+  <!--</welcome-file-list>-->
 
 </web-app>
 

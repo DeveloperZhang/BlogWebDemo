@@ -1,39 +1,101 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>首页</title>
-    <style type="text/css">
-        a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-        }
-
-        h3 {
-            width: 180px;
-            height: 38px;
-            margin: 100px auto;
-            text-align: center;
-            line-height: 38px;
-            background: deepskyblue;
-            border-radius: 4px;
-        }
-    </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <div class="title">
-        登录 | 注册
-    </div>
-    <div>
-        <input type="text" placeholder="手机号后邮箱"/>
-        <input type="password" placeholder="密码"/>
+    <div class="row clearfix">
+        <div class="col-md-12 column" style="margin-top: 50px;">
+            <center>
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" id="loginBtn"><em></em> 登录</button>
+                    <button class="btn btn-default" type="button" id="registerBtn"><em></em> 注册</button>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </center>
+            <form class="form-horizontal" role="form" action="http://localhost:8888/ssm/user/findUserByName">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="inputEmail3" name="username"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" name="password"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 column text-center">
+                        <button type="submit" class="btn btn-default" id="submitBtn">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<br><br>
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+<!--  plugins  -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var result = getUrlParam("type");
+        if(result) {
+            alert("请登录后操作");
+        }
 
-<h3>
-    <a href="/paper/allPaper">点击进入管理页面</a>
-</h3>
+        var uid = getCookie("uid");
+        if(uid) {
+            window.location = "http://localhost:8888/ssm/paper/allPaper.do";
+        }
+
+
+        $("button#loginBtn").click(function(){
+            $("button#submitBtn").html("登录");
+
+        });
+        $("button#registerBtn").click(function(){
+            $("button#submitBtn").html("注册");
+        });
+    });
+
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+
+    function getCookie(cookie_name)
+    {
+        var allcookies = document.cookie;
+        var cookie_pos = allcookies.indexOf(cookie_name);   //索引的长度
+
+        // 如果找到了索引，就代表cookie存在，
+        // 反之，就说明不存在。
+        if (cookie_pos != -1)
+        {
+            // 把cookie_pos放在值的开始，只要给值加1即可。
+            cookie_pos += cookie_name.length + 1;      //这里容易出问题，所以请大家参考的时候自己好好研究一下
+            var cookie_end = allcookies.indexOf(";", cookie_pos);
+
+            if (cookie_end == -1)
+            {
+                cookie_end = allcookies.length;
+            }
+
+            var value = unescape(allcookies.substring(cookie_pos, cookie_end));         //这里就可以得到你想要的cookie的值了。。。
+        }
+        return value;
+    }
+
+</script>
 </body>
 </html>

@@ -8,10 +8,15 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
     </resultMap>
-    <select id="queryByUserName" resultType="User" parameterType="String">
+    <select id="queryByUserName" resultMap="userResultMap" parameterType="String">
         SELECT *
         FROM User
         WHERE username=#{username} and password=#{password}
     </select>
 
+    <select id="queryByUserId" resultMap="userResultMap" parameterType="int">
+        SELECT *
+        FROM User
+        WHERE uid=#{uid}
+    </select>
 </mapper>
