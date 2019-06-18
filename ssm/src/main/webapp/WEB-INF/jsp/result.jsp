@@ -5,6 +5,8 @@
   Time: 5:07 PM
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -15,8 +17,6 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="row clearfix">
             <div class="col-md-12 column">
                 <h1>恭喜登录成功</h1>
                 <ul class="list-unstyled">
@@ -30,8 +30,6 @@
                 <button type="button" class="btn btn-primary btn-default" onclick="jump()">跳转</button>
                 <button type="button" class="btn btn-primary btn-default" onclick="logout()">登出</button>
             </div>
-        </div>
-    </div>
     <!-- jQuery -->
     <script src="../js/jquery.js"></script>
     <!--  plugins  -->

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>操作失败</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+            <!--<div class='col-md-12 column' style='margin-top: 10px'>-->
+                <!--<div class='jumbotron well'>-->
+                    <!--<h1>-->
+                        <!--Hello, world!-->
+                    <!--</h1>-->
+                    <!--<p>-->
+                        <!--This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.-->
+                    <!--</p>-->
+                    <!--<p>-->
+                        <!--<a class='btn btn-primary btn-large' href='#'>Learn more</a>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class='col-md-12 column' style='margin-top: 10px'>
+                <div class='jumbotron well'>
+                    <h1>
+                        Hello, world!
+                    </h1>
+                    <p>
+                        <a class='btn btn-primary btn-large' href='#'>Learn more</a>
+                    </p>
+                </div>
+            </div>
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+    <!--  plugins  -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            loadData();
+        });
+
+        function menuClick(type) {
+            $("#first").removeClass("active");
+            $("#second").removeClass("active");
+            $("#third").removeClass("active");
+            switch(type)
+            {
+                case 1:
+                    $("#first").addClass("active");
+                    window.location = "../html/home.html";
+                    break;
+                case 2:
+                    $("#second").addClass("active");
+                    window.location = "http://localhost:8888/ssm/paper/allPaper.do";
+                    break;
+                case 3:
+                    $("#third").addClass("active");
+                    window.location = "http://localhost:8888/ssm/user/info.do";
+                    break;
+                default:
+
+            }
+        }
+
+        function loadData() {
+            console.log("请求准备发送");
+            $.ajax({
+                type : "get",
+                url : "http://localhost:8888/ssm/paper/allPaperToJson",
+                dataType : "json",
+                data : {},
+                success : function(data) {
+                    console.log(JSON.stringify(data));
+                    $.each(data, function(i, n) {
+                        console.log('i:'+i+',n:'+n['paperName']);
+                        var boarddiv = "<div class='col-md-12 column' style='margin-top: 10px'>\n" +
+                            "                <div class='jumbotron well'>\n" +
+                            "                    <h1>\n" +
+                            "                        "+n['paperName']+"\n" +
+                            "                    </h1>\n" +
+                            "                    <p>\n" +
+                            "                        <a class='btn btn-primary btn-large' href='#'>Learn more</a>\n" +
+                            "                    </p>\n" +
+                            "                </div>\n" +
+                            "            </div>";
+                        $(document.body).append(boarddiv);
+                    })
+                },
+            });
+        }
+
+    </script>
+</body>
+</html>

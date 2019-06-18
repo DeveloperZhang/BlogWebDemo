@@ -19,16 +19,12 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <div class="page-header" style="text-align: center">
-                    <h1>
-                        论文CRUD
-                    </h1>
-                </div>
+    <div class="col-md-12 column">
+            <div class="page-header" style="text-align: center">
+                <h1>
+                    论文CRUD
+                </h1>
             </div>
-        </div>
         <div class="row">
             <div class="col-md-4 column">
                 <%--"<%=basePath %>paper/updatePaper"--%>
@@ -66,9 +62,15 @@
             </div>
         </div>
     </div>
+    <script src="../js/jquery.js"></script>
+
+    <!--  plugins  -->
+
+    <script src="../js/bootstrap.min.js"></script>
+
     <script>
         function logout() {
-        window.location = "<%=path%>/user/logout.do";
+            window.location = "<%=path%>/user/logout.do";
         }
     </script>
 </body>

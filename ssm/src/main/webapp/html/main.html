@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>主界面</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul class="nav nav-tabs" id="nav-left">
+                <li id="first" onclick="menuClick(1)" class="active" style="width: 100px">
+                    <a href="#" style="text-align: center;font-size: 18px">首页</a>
+                </li>
+                <li id="second" style="width: 100px">
+                    <a href="#" onclick="menuClick(2)" style="text-align: center;font-size: 18px">文章</a>
+                </li>
+                <li id="third" style="width: 100px">
+                    <a href="#" onclick="menuClick(3)" style="text-align: center;font-size: 18px">我的</a>
+                </li>
+                <li id="forth" style="width: 100px">
+                    <a href="#" onclick="test()" style="text-align: center;font-size: 18px">test</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12 column">
+            <iframe src="http://localhost:8888/ssm/html/home.html" frameborder="0" width="100%" id="test" onload="setIframeHeight(this)"></iframe>
+            <!--<iframe src="http://localhost:8888/ssm/html/home.html" frameborder="0" width="100%" id="test" height="100%"></iframe>-->
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+<!--  plugins  -->
+<script src="../js/bootstrap.min.js"></script>
+<script>
+
+    function setIframeHeight(iframe) {
+        if (iframe) {
+            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+            if (iframeWin.document.body) {
+                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+            }
+        }
+    };
+
+    window.onload = function () {
+        setIframeHeight(document.getElementById('test'));
+    };
+
+    function menuClick(type) {
+        $("#first").removeClass("active");
+        $("#second").removeClass("active");
+        $("#third").removeClass("active");
+        switch(type)
+        {
+            case 1:
+                $("#first").addClass("active");
+                $('#test').attr('src', '../html/home.html');
+                break;
+            case 2:
+                $("#second").addClass("active");
+                $('#test').attr('src', 'http://localhost:8888/ssm/paper/allPaper.do');
+                break;
+            case 3:
+                $("#third").addClass("active");
+                $('#test').attr('src', 'http://localhost:8888/ssm/user/info.do');
+                break;
+            default:
+
+        }
+    }
+</script>
+</body>
+</html>
